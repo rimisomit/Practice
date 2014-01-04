@@ -1,0 +1,3 @@
+::comment
+echo %time%
+PAUSE
