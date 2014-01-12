@@ -1,3 +1,4 @@
+#some example
 initialbalance = 32000 #float(raw_input('balance: '))
 rate = 0.2 #float(raw_input('rate: '))
 

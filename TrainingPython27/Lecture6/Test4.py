@@ -1,5 +1,6 @@
 '''
-Created on 03 янв. 2014 г.
+Created on 03 пїЅпїЅпїЅ. 2014 пїЅ.
 
 @author: user
 '''
+#empty
