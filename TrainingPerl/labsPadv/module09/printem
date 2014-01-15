@@ -1,0 +1,3 @@
+#! /usr/bin/perl
+# printem program - IPC example
+print "Hello!";

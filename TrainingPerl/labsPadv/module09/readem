@@ -1,0 +1,3 @@
+#! /usr/bin/perl
+# readem program for IPC
+while (<>) { print; }

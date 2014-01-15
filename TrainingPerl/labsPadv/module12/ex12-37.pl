@@ -1,0 +1,17 @@
+#! /usr/bin/perl
+#ex12-37
+@array[0] = {favorite => "apples", 
+		'second favorite' => "oranges"};
+@array[1] = {favorite => "corn", 
+		'second favorite' => "peas", 
+		'least favorite' => "turnip"};
+@array[2] = {favorite => "chicken", 
+	'second favorite' => "beef"};
+
+for $hashreference (@array) {
+	print "{";
+	for $key (sort keys $hashreference) {
+		print "$key => $array[$loopindex]{$key}, ";
+	}
+print "}\n";
+}
