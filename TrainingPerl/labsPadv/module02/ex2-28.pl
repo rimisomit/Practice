@@ -4,5 +4,3 @@
 	  sandwich => hamburger,
 	  drink => bubby );
 print "$hash{fruit}\n";
-
-
