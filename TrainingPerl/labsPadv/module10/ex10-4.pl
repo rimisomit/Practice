@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 #ex10-4
-open (FILEHANDLE, ">format.txt") 
+open (FILEHANDLE, ">./format.txt") 
 		or die ("Cannot open file format.txt");
 format FILEHANDLE =
 @<<<<<<<<<<@>>>>>>>>>>>>

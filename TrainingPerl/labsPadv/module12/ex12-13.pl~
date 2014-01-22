@@ -1,0 +1,7 @@
+#! /usr/bin/perl
+#ex12-13
+@{$array[0]} = ("apples", "oranges");
+@{$array[l]} = ("asparagus", "corn", "peas");
+@{$array[2]} = ("ham", "chicken");
+print $array[1][1];
+

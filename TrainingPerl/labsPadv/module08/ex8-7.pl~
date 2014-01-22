@@ -1,0 +1,4 @@
+#! /usr/bin/perl
+#ex8-7
+$_=033;
+print hex

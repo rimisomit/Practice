@@ -1,9 +1,10 @@
 #! /usr/bin/perl
 #ex10-9
-open (FILEHANDLE, "<file.txt") 
+open (FILEHANDLE, "<./file.txt") 
 		or die ("Cannot open file file.txt");
 seek FILEHANDLE, 10, 0;
 while (<FILEHANDLE>) {
+sleep 1;
 print;
 }
 close (FILEHANDLE);

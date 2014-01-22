@@ -1,0 +1,12 @@
+#! /usr/bin/perl -w
+#ex14-132
+$_='Ab';
+my $re=qr/[a-z]+/;
+print $& if $_ =~ $re;
+
+# compare code
+print "\n\n";
+
+$_='Ab';
+my $re=qr/[a-z]+/i;
+print $& if $_ =~ $re;

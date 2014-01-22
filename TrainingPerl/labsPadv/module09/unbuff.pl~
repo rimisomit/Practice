@@ -1,0 +1,9 @@
+#! /usr/bin/perl
+# getc unbuff
+
+system "stty -echo -icanon min 1";
+#system "stty -icanon </dev/tty >&1";  
+for ($loop_index = 0; $loop_index <= 9; $loop_index++) {  
+     $char = getc(STDIN);  
+     print $char;  
+}  

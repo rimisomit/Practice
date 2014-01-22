@@ -1,0 +1,5 @@
+#! /usr/bin/perl -w
+#ex2-14
+@array = (1, 2, 3);
+print "\@array has " . "&scalar (@array)" . " elements.";
+

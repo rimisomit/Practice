@@ -1,0 +1,7 @@
+#! /usr/bin/perl
+#ex14-2
+while ($input=<>){
+if (/stop|quit|exit|abort/i) { exit }
+}
+
+

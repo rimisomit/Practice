@@ -1,0 +1,42 @@
+1root:x:0:0:Super-User:/:/sbin/sh
+2daemon:x:1:1::/:
+3bin:x:2:2::/usr/bin:
+4sys:x:3:3::/:
+5adm:x:4:4:Admin:/var/adm:
+6lp:x:71:8:Line Printer Admin:/usr/spool/lp:
+7uucp:x:5:5:uucp Admin:/usr/lib/uucp:
+8nuucp:x:9:9:uucp Admin:/var/spool/uucppublic:/usr/lib/uucp/uucico
+9smmsp:x:25:25:SendMail Message Submission Program:/:
+10listen:x:37:4:Network Admin:/usr/net/nls:
+11gdm:x:50:50:GDM Reserved UID:/:
+12webservd:x:80:80:WebServer Reserved UID:/:
+13postgres:x:90:90:PostgreSQL Reserved UID:/:/usr/bin/pfksh
+14svctag:x:95:12:Service Tag UID:/:
+15nobody:x:60001:60001:NFS Anonymous Access User:/:
+16noaccess:x:60002:60002:No Access User:/:
+17nobody4:x:65534:65534:SunOS 4.x NFS Anonymous Access User:/:
+18student:x:1001:1001:The mail working account for student:/home/student:/usr/xpg4/bin/sh
+19st1:x:102:10:st1:/home/st1:/bin/xpg4/bin/sh
+20acluser:x:400:400:Lab account:/home/acluser:/bin/sh
+21root::0:
+22other::1:root
+23bin::2:root,daemon
+24sys::3:root,bin,adm
+25adm::4:root,daemon
+26uucp::5:root
+27mail::6:root
+28tty::7:root,adm
+29lp::8:root,adm
+30nuucp::9:root
+31staff::10:
+32daemon::12:root
+33sysadmin::14:
+34smmsp::25:
+35gdm::50:
+36webservd::80:
+37postgres::90:
+38nobody::60001:
+39noaccess::60002:
+40nogroup::65534:
+41student::1001:st1
+42aclgroup::400:

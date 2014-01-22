@@ -1,0 +1,22 @@
+#! /usr/bin/perl
+#ex12-34
+$data[0] = "favorite:apples, 
+		second favorite:oranges";
+$data[1] = "favorite:corn, 
+		second favorite:peas, 
+		least favorite:turnip";
+$data[2] = "favorite:chicken, 
+		second favorite:beef";
+
+for $loopindex (0..$#data) {
+	for $element (split ', ', $data[$loopindex]) {
+		($key, $value) = split ': ', $element;
+		$key =~ s/^[\s\n]+//;	# очистить от пробелов
+		$key =~ s/[\s\n]+$://;
+		$value =~ s/^[\s\n]+//;	# очистить от пробелов
+		$value =~ s/[\s\n]+$;//;
+		$array[$loopindex]{$key} = $value;
+	}
+}
+
+print $array[0]{'second favorite'};
