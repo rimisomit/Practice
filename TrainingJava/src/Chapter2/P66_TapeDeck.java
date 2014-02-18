@@ -8,7 +8,6 @@ public class P66_TapeDeck {
 	}
 	
 	void recordType() {
-		
+		System.out.println("Type is recording");
 	}
-
 }
