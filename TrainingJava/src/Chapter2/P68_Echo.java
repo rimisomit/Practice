@@ -5,5 +5,4 @@ public class P68_Echo {
 	void helo() {
 		System.out.println("Hellooooooo");
 	}
-
 }
