@@ -1,3 +1,4 @@
+package Chapter1;
 public class P40_PhraseOMatic {
 	public static void main(String[] args) {
 		String[] wordListOne = {"24/7", "multi-Tier"};

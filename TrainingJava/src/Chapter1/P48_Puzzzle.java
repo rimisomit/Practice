@@ -1,3 +1,4 @@
+package Chapter1;
 public class P48_Puzzzle {
 	public static void main(String[] args) {
 		int x = 0;

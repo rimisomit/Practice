@@ -1,3 +1,4 @@
+package Chapter1;
 public class P36_Loopy {
 	public static void main(String[] args) {
 		int x = 1;

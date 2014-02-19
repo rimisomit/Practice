@@ -1,3 +1,4 @@
+package Chapter1;
 class P37_ItTest2 {
 	public static void main(String[] args) {
 		int x = 2;

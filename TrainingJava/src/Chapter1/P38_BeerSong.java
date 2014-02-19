@@ -1,3 +1,4 @@
+package Chapter1;
 public class P38_BeerSong {
 	public static void main(String[] args) {
 		int beerNum = 99;

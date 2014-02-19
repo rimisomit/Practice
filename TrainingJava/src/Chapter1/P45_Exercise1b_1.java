@@ -1,3 +1,4 @@
+package Chapter1;
 public class P45_Exercise1b_1 {
 	public static void main(String[] args) {
 		int x = 1;

@@ -1,3 +1,4 @@
+package Chapter1;
 public class P47_Test {
 	public static void main(String[] args) {
 		int x = 0;

@@ -1,3 +1,4 @@
+package Chapter1;
 public class P34_Fun {
 
 	public static void main(String[] args) {
