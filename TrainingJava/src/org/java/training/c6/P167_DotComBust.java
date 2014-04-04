@@ -1,55 +1,64 @@
 package org.java.training.c6;
-
 import java.util.ArrayList;
-
 /**
  * Created by user on 3/4/14.
  */
 public class P167_DotComBust {
     private P173_GameHelper helper = new P173_GameHelper();
-    private ArrayList<P171_DotCom> dotComList = new ArrayList<P171_DotCom>();
+    private ArrayList<P171_DotCom> dotComsList = new ArrayList<P171_DotCom>();
     private int numOfGuesses = 0;
-    public void setUpGame() {
+    private void setUpGame() {
         P171_DotCom one = new P171_DotCom();
         one.setName("Pets.com");
         P171_DotCom two = new P171_DotCom();
         two.setName("eToys.com");
         P171_DotCom three = new P171_DotCom();
         three.setName("Go2.com");
+        dotComsList.add(one);
+        dotComsList.add(two);
+        dotComsList.add(three);
         System.out.println("Your goal is to sink three dot coms");
-        for(P171_DotCom dotComToSet: dotComList) {
+        System.out.println("Pets.com, eToys.com, Go2.com");
+        System.out.println("Try to sink them all in the fewest number of guesses");
+
+        for(P171_DotCom dotComToSet: dotComsList) {
             ArrayList<String> newLocation = helper.placeDotCom(3);
             dotComToSet.setLocationCells(newLocation);
         }
     }
-    public void startPlaying() {
-        while(dotComList.isEmpty()) {
-            String userGuess = helper.getUserInput("Enter a guess");
+    private void startPlaying() {
+        while (!dotComsList.isEmpty()) {
+            String userGuess = helper.getUserInput("Enter a guess: ");
+            //System.out.println(userGuess);
             checkUserGuess(userGuess);
         }
         finishGame();
     }
-    public void checkUserGuess(String userGuess) {
+    private void checkUserGuess(String userGuess) {
         numOfGuesses++;
         String result = "miss";
-        for (P171_DotCom dotComToTest : dotComList) {
+        //System.out.println(result);
+        for (P171_DotCom dotComToTest : dotComsList) {
             result = dotComToTest.checkYourself(userGuess);
+            //System.out.println(result);
             if (result.equals("hit")) {
                 break;
             }
             if (result.equals("kill")) {
-                dotComList.remove(dotComToTest);
+                dotComsList.remove(dotComToTest);
                 break;
             }
             System.out.println(result);
         }
     }
-    public void finishGame() {
+    private void finishGame() {
         System.out.println("All dot coms are dead! Your stock is now worthless");
         if (numOfGuesses <= 18) {
             System.out.println("It only took you " + numOfGuesses + " guesses");
+            System.out.println("You got out before your options sank.");
         } else {
-            System.out.println("Took you long enough. " + numOfGuesses + " guesses");
+            System.out.println("Took you long enough. " + numOfGuesses + " guesses.");
+            System.out.println("Fish are dancing with your options.");
         }
     }
     public static void main(String[] args) {
