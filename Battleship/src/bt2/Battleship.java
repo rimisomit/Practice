@@ -7,6 +7,7 @@ import java.util.*;
  *  main loop
  *  checking input commands
  */
+
 public class Battleship {
 	// Predefined error messages
 	private final static String error_ILLEGAL_NUM_ARGS = "Usage: java Battleship N [config-file]" +
@@ -44,11 +45,7 @@ public class Battleship {
     private Board myBoard;
     // > - as a prompt
 	private final String PROMPT = "> ";
-/*
-	public Battleship(int dim) throws BattleshipException {
-		this(dim, null);
-	}
-*/
+
 	public Battleship(int dim, String configFile) throws BattleshipException {
 		// create board from file
 		board = new Board(dim, configFile);
@@ -56,6 +53,7 @@ public class Battleship {
         myBoard = new Board(dim, configFile);
         myBoard.setHuman(true);
 	}
+
     // >help output
 	private void printHelpMsg() {
 		System.out.println("List of commands:");
@@ -65,6 +63,7 @@ public class Battleship {
 		System.out.println(" mystats|compstats - prints out the game statistics");
 		System.out.println(" quit/exit - exits the game");
 	}
+
     // >stats show statistic
     private void printStats(Board b) {
         int numFired = b.getMissilesFired();
@@ -80,8 +79,7 @@ public class Battleship {
     }
 
 	private void mainLoop() {
-		// display board w/o cheat
-		//board.display(false);
+		// display my board with ships
         System.out.println("\t\t\tMy board");
         myBoard.display(true);
 		// wait for user input
