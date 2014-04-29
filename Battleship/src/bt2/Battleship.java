@@ -66,13 +66,6 @@ public class Battleship {
 		System.out.println(" quit/exit - exits the game");
 	}
     // >stats show statistic
-/*	private void printMyStats() {
-		int numFired = board.getMissilesFired();
-		System.out.println("Number of missiles fired: " + board.getMissilesFired());
-		System.out.println("Hit ratio: " + 
-				(numFired == 0 ? 0 : (double)board.getNumHits() / board.getMissilesFired() * 100) + "%");
-		System.out.println("Number of ships sunk: " + board.getShipsSunk());
-	} */
     private void printStats(Board b) {
         int numFired = b.getMissilesFired();
         if (b.isHuman()) {
