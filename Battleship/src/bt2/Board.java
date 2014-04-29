@@ -11,6 +11,7 @@ public class Board {
 	public static String WATER = "-";
 	public static String WATER_CRATER = "0";
 	public static String SHIP_CRATER = "X";
+	private boolean human = true;
 	// board pieces
 	private Water water = new Water(WATER, WATER);		
 	private Crater waterCrater = new Crater(WATER, WATER_CRATER);
@@ -19,9 +20,9 @@ public class Board {
 	private BoardCell grid[][];
 	private int dimension;
 	// game limits
-	public final static int MIN_BOARD_SIZE = 5;
+	public final static int MIN_BOARD_SIZE = 9;
 	public final static int MAX_BOARD_SIZE = 100;
-	private final static int RANDOM_NUM_SHIPS = 5;
+	private final static int RANDOM_NUM_SHIPS = 7;
     // initial shots=0
 	private int missilesFired = 0;
 	private int numHits = 0;
@@ -42,9 +43,11 @@ public class Board {
 			// create each sized ship pointing in a random direction[0|1|2|3]
 			ships[0] = new Ship(Ship.ShipType.AIRCRAFT, rand.nextInt(3));
 			ships[1] = new Ship(Ship.ShipType.BATTLESHIP, rand.nextInt(3));
-			ships[2] = new Ship(Ship.ShipType.CRUISER, rand.nextInt(3));
-			ships[3] = new Ship(Ship.ShipType.DESTROYER, rand.nextInt(3));
-			ships[4] = new Ship(Ship.ShipType.PATROL, rand.nextInt(3));
+            ships[2] = new Ship(Ship.ShipType.BATTLESHIP, rand.nextInt(3));
+			ships[3] = new Ship(Ship.ShipType.CRUISER, rand.nextInt(3));
+            ships[4] = new Ship(Ship.ShipType.CRUISER, rand.nextInt(3));
+			ships[5] = new Ship(Ship.ShipType.DESTROYER, rand.nextInt(3));
+			ships[6] = new Ship(Ship.ShipType.PATROL, rand.nextInt(3));
 			
 			// place each ship on the board in a random position.  This can
 			// cause the initial direction of the ship to change if it cannot
@@ -177,15 +180,21 @@ public class Board {
         return ships.length;
     }
 	
-	public boolean isValid(int x, int y) { return x>=0 && x< dimension && y>=0 && y< dimension; }
+	public boolean isValid(int x, int y) {
+        return x >= 0 && x < dimension && y >= 0 && y < dimension;
+    }
+	// Put specific piece(water, ship, etc) on coord
+	public void place(int x, int y, BoardCell piece) {
+        grid[x][y] = piece;
+    }
 	
-	public void place(int x, int y, BoardCell piece) { grid[x][y] = piece; }
-	
-	public boolean checkWin() {	return getNumShips() == getShipsSunk();	}
+	public boolean checkWin() {
+        return getNumShips() == getShipsSunk();
+    }
 	
 	public void display(boolean cheat) {
 		// print column header
-		System.out.print("   ");
+        System.out.print("   ");
 		for (int col=0; col< dimension; col++) {
 			System.out.printf("%3d", col);
 		}
@@ -225,15 +234,18 @@ public class Board {
 	}
     //Try to place one ship randomly
 	private void placeShipRandom(Ship ship) {
-		int row=0, col=0;
-		boolean placed=false;
+		int row = 0, col = 0;
+		boolean placed = false;
 		// since the board size contains enough squares to hold all ships, we
 		// loop until the ship can be placed
+        try {
+        int repeatLimit = 0;
 		while (!placed) {
-			// generate a random starting coords
-			row = rand.nextInt(getDim()-1);
-			col = rand.nextInt(getDim()-1);
-			// try each direction[N|S|E|W] for this coors
+			// starting coord should not be near borders
+			row = rand.nextInt(getDim() - 2) + 1;
+			col = rand.nextInt(getDim() - 2) + 1;
+            //System.out.println(row + "&" + col + " " + ship.cheatVal + " " + ship.getDirection());
+            // try each direction[N|S|E|W] for this coors
 			for (int i=0; i<4; i++) {
                 // check if ship can be placed
 				if (isShipPositionValid(ship, row, col, ship.getDirection())) {
@@ -243,9 +255,18 @@ public class Board {
 					ship.setDirection((ship.getDirection() + 1) % 4);
 				}
 			}
+            repeatLimit++;
+            if (repeatLimit > 1000000) {
+                throw new BattleshipException("Cannot randomize ships");
+            }
 		}
 		placeShip(ship, row, col);	// place verified ship
 	}
+        catch(BattleshipException e) {
+            System.err.println(e.getMessage());
+    }
+
+    }
     // Place verified ship
 	private void placeShip(Ship ship, int row, int col) {
 		// input: ship size, stating coords
@@ -265,21 +286,35 @@ public class Board {
 		else if (dir == Ship.SOUTH) rowInc = 1;
 		else if (dir == Ship.EAST) colInc = 1;
 		else if (dir == Ship.WEST) colInc = -1;
-		// check borders. start row +
-		int rowBound = row + (rowInc * (ship.getHitPoints() - 1));
-		int colBound = col + (colInc * (ship.getHitPoints() - 1));
-		if (rowBound < 0 || rowBound > getDim() - 1) 
+		// check borders. start row + (direction * size-1)
+		int rowBound = row + (rowInc * (ship.getHitPoints() - 1)); //=row if horizontal
+        int colBound = col + (colInc * (ship.getHitPoints() - 1)); //=col if vertical
+        if (rowBound < 1 || rowBound > getDim() - 2)
 			return false;
-		else if (colBound < 0 || colBound > getDim() - 1)
+		else if (colBound < 1 || colBound > getDim() - 2)
 			return false;
-		// make sure all cells are not occupied
-		int count=0;
-		while (count<ship.getHitPoints() && !getPiece(row, col).isOccupied()) {
+		// put ship correctly
+        int count = 0;
+		while (count < ship.getHitPoints() && !getPiece(row, col).isOccupied()
+                && !getPiece((row-1), col).isOccupied() && !getPiece(row, (col-1)).isOccupied()
+                && !getPiece((row+1), col).isOccupied() && !getPiece(row, (col+1)).isOccupied()
+                && !getPiece((row+1), (col-1)).isOccupied() && !getPiece((row-1), (col+1)).isOccupied()
+                && !getPiece((row+1), (col+1)).isOccupied() && !getPiece((row-1), (col-1)).isOccupied()) {
 			row += rowInc;
 			col += colInc;
 			count++;
-		}
+            //System.out.println(row + " " + rowInc + " | " + col + " " + colInc);
+        }
 		// if all cells are unoccupied we can place the ship here
-		return count == ship.getHitPoints();
-	}
+        //System.out.println(count == ship.getHitPoints());
+        return (count == ship.getHitPoints());
+    }
+
+    public boolean isHuman() {
+        return human;
+    }
+
+    public void setHuman(boolean human) {
+        this.human = human;
+    }
 }

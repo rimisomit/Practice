@@ -11,7 +11,7 @@ public class Ship extends BoardCell {
 	// an enumerated type for the different types of ship's that can
 	// exist in the game
 	public enum ShipType {
-		//Ship Type (getHitPoints, Symbolic marker, Place)
+		//Ship Type (getHitPoints, Symb in cheat mode, Symb in non cheat mode)
 		AIRCRAFT (5, "A", Board.WATER),
 		BATTLESHIP (4, "B", Board.WATER),
 		CRUISER (3, "C", Board.WATER),
@@ -28,9 +28,15 @@ public class Ship extends BoardCell {
 			this.nocheatVal = nocheatVal;
 		}
 		// Getters for ShipType
-		public int getHitPoints() { return hitPoints; }
-		public String getCheatVal() { return cheatVal; }
-		public String getNoCheatVal() { return nocheatVal; }
+		public int getHitPoints() {
+            return hitPoints;
+        }
+		public String getCheatVal() {
+            return cheatVal;
+        }
+		public String getNoCheatVal() {
+            return nocheatVal;
+        }
 	}
 	// ship data
 	private int hitPoints;
@@ -75,7 +81,7 @@ public class Ship extends BoardCell {
 		hitPoints--;
         //check if no hit points
 		if (hitPoints == 0) {
-			System.out.println(Battleship.msg_SUNK);
+			System.out.println(Ship.this.cheatVal + "-ship " + Battleship.msg_SUNK);
 			sunk = true;
 		}
 		return true;

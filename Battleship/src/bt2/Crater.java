@@ -1,15 +1,12 @@
 package bt2;
 /**
- * A Crater object is created each time a Water or Ship cell is fired at.
- * 	- There are two types of craters in the game, water crater and ship crater.
- * 	- For a water crater:
- * 		- ship mode value = "-"
- * 		- board mode value = "O"
- *  - For a ship crater:
- *  		- ship mode value = value of ship hit (A-D)
- *  		- board mode value = "X"
+ * Crater class, on Board cell hit.
+ * nonCheatMode [X|O]
+ * cheatMode [X|[A..E]]
  */
 public class Crater extends BoardCell {
+
+    // display crater in cheat and nonCheatMode
 	public Crater(String cheatVal, String noCheatVal) {
 		super(cheatVal, noCheatVal);
 	}
