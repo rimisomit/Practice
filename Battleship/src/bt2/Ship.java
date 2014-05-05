@@ -43,6 +43,7 @@ public class Ship extends BoardCell {
 	private int dir;
 	private boolean sunk = false;
 
+    // Constructor.
 	public Ship(ShipType ship, int dir) {
 		super(ship.getCheatVal(), ship.getNoCheatVal());
 		this.hitPoints = ship.getHitPoints();
@@ -52,6 +53,7 @@ public class Ship extends BoardCell {
 	public boolean getSunk() {
 		return sunk;
 	}
+    public String getCheatVal () { return this.cheatVal; }
 	public int getDirection() {
 		return dir;
 	}

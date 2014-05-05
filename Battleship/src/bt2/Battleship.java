@@ -44,8 +44,9 @@ public class Battleship {
 	private Board board;
     private Board myBoard;
     // > - as a prompt
-	private final String PROMPT = "> ";
+	private final String PROMPT = "user$ > ";
 
+    //constructor. Create game with two boards
 	public Battleship(int dim, String configFile) throws BattleshipException {
 		// create board from file
 		board = new Board(dim, configFile);
@@ -85,6 +86,7 @@ public class Battleship {
 		// wait for user input
 		Scanner lineScanner = new Scanner(System.in);
 		String cmd;
+
 		do {
 			cmd = cmd_BLANK;
 			System.out.print(PROMPT);
@@ -157,7 +159,7 @@ public class Battleship {
                         //comp fire
                         row = myBoard.rand.nextInt(myBoard.getDim()-2) + 1;
                         col = myBoard.rand.nextInt(myBoard.getDim()-2) + 1;
-                        System.out.println("Comp fires on " + row + " " + col);
+                        System.out.println("comp$ > fire " + row + " " + col);
                         try {
                             Thread.sleep(3000);
                         } catch (InterruptedException e) {
@@ -208,18 +210,12 @@ public class Battleship {
 		} while (!(cmd.equals(cmd_QUIT)|cmd.equals(cmd_EXIT)));
 	}
 
-    public final static void clearConsole()
-    {
-        try
-        {
+    public static void clearConsole() {
+        try {
             final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows"))
-            {
+            if (os.contains("Windows")) {
                 Runtime.getRuntime().exec("cls");
-            }
-            else
-            {
+            } else {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (IOException e) {

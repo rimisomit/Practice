@@ -6,7 +6,7 @@ package bt2;
  */
 public class Crater extends BoardCell {
 
-    // display crater in cheat and nonCheatMode
+    // Constructor. display crater in cheat and nonCheatMode
 	public Crater(String cheatVal, String noCheatVal) {
 		super(cheatVal, noCheatVal);
 	}

@@ -5,7 +5,8 @@ package bt2;
  * cheatMode [-|[A..E]]
  */
 public class Water extends BoardCell {
-	
+
+    //Constructor. Create water cell
 	public Water(String cheat, String nocheat) {
 		super(cheat, nocheat);
 	}

@@ -7,7 +7,7 @@ public abstract class BoardCell {
 	public String cheatVal;		// "view/show ships" representation
 	public String nocheatVal;		// "view/show board" representation
 
-	// how to fill in a cell in cheatMode and nonCheatMode
+	// Constructor. How to fill in a cell in cheatMode and nonCheatMode
     public BoardCell(String cheat, String nocheat) {
 		cheatVal = cheat;
 		nocheatVal = nocheat;

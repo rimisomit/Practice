@@ -6,6 +6,9 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Board class with objects
+ */
 public class Board {
 
 	public static String WATER = "-";
@@ -27,7 +30,8 @@ public class Board {
 	private int missilesFired = 0;
 	private int numHits = 0;
 	Random rand = new Random();
-	// Create board with ships
+
+	// Constructor. Create board with ships
 	public Board(int dim, String configFile ) throws BattleshipException {
 		this.dimension = dim;
 		grid = new BoardCell[dim][dim];
@@ -55,7 +59,6 @@ public class Board {
 			for (int i=0; i<ships.length; i++) {
 				placeShipRandom(ships[i]);
 			}
-			
 		// create ships from file and place on board
 		} else {
 			try {
@@ -69,14 +72,16 @@ public class Board {
 					ships = new Ship[numShips];
 				} else {
 					throw new BattleshipException(
-							"Check first line. Incorrect or null number of ships in file " + configFile + ".");
+							"Check first line. Incorrect or " +
+                                    "null number of ships in file " + configFile + ".");
 				}
 				// check lines content
 				for (int i=0; i<numShips; i++) {
                     //check for EOF
 					if (!lines.hasNext()) {
 						throw new BattleshipException(
-								"Check count of lines, excluding first. Incorrect number of ships in file " + configFile + ".");
+								"Check count of lines, excluding first. " +
+                                        "Incorrect number of ships in file " + configFile + ".");
 					}
 					//start reading from 2nd line
 					words = new Scanner (lines.nextLine());
@@ -144,10 +149,10 @@ public class Board {
 				throw new BattleshipException(
 						"File " + configFile + " has corrupted contents.");
 			}
-			catch (IOException e) {
+			/*catch (IOException e) {
 				throw new BattleshipException(
 						"File " + configFile + " has corrupted contents.");
-			}
+			}*/
 		}
 	}
 	
@@ -160,9 +165,13 @@ public class Board {
 		return isValid(x, y) ? grid[x][y] : null;
 	}
 	
-	public int getMissilesFired() { return missilesFired; }
+	public int getMissilesFired() {
+        return missilesFired;
+    }
 	
-	public int getNumHits() { return numHits; }
+	public int getNumHits() {
+        return numHits;
+    }
 	
 	public int getShipsSunk() {
 		int numSunk = 0;
@@ -257,7 +266,7 @@ public class Board {
 			}
             repeatLimit++;
             if (repeatLimit > 1000000) {
-                throw new BattleshipException("Cannot randomize ships");
+                throw new BattleshipException("Cannot put " + ship.getCheatVal() + "-ship");
             }
 		}
 		placeShip(ship, row, col);	// place verified ship
