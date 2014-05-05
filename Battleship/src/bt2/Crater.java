@@ -1,6 +1,6 @@
 package bt2;
 /**
- * Crater class, on Board cell hit.
+ * Crater subclass, on Board cell hit.
  * nonCheatMode [X|O]
  * cheatMode [X|[A..E]]
  */

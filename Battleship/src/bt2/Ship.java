@@ -1,5 +1,10 @@
 package bt2;
 
+/**
+ * Ship subclass
+ *
+ */
+
 public class Ship extends BoardCell {
 	
 	// valid ship directions

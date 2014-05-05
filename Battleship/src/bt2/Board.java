@@ -1,7 +1,6 @@
 package bt2;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;

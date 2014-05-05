@@ -4,8 +4,7 @@ import java.util.*;
 
 /**
  * Main class
- *  main loop
- *  checking input commands
+ * Main loop, Checking input commands
  */
 
 public class Battleship {
