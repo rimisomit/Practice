@@ -2,7 +2,7 @@ package bt2;
 
 /**
  * Ship subclass
- *
+ * Used enum data structure
  */
 
 public class Ship extends BoardCell {
@@ -13,8 +13,7 @@ public class Ship extends BoardCell {
 	public static int EAST = 2;
 	public static int WEST = 3;
 	
-	// an enumerated type for the different types of ship's that can
-	// exist in the game
+	// const data structure
 	public enum ShipType {
 		//Ship Type (getHitPoints, Symb in cheat mode, Symb in non cheat mode)
 		AIRCRAFT (5, "A", Board.WATER),
@@ -22,17 +21,17 @@ public class Ship extends BoardCell {
 		CRUISER (3, "C", Board.WATER),
 		DESTROYER (2, "D", Board.WATER),
         PATROL (1, "E", Board.WATER);
-		
+		// variables
 		private final int hitPoints;
 		private final String cheatVal;
 		private final String nocheatVal;
-		
+		// constructor
 		ShipType(int hitPoints, String cheatVal, String nocheatVal) {
 			this.hitPoints = hitPoints;
 			this.cheatVal = cheatVal;
 			this.nocheatVal = nocheatVal;
 		}
-		// Getters for ShipType
+		// Methods. Getters for ShipType
 		public int getHitPoints() {
             return hitPoints;
         }
