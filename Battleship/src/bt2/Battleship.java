@@ -5,6 +5,9 @@ import java.util.*;
 /**
  * Main class
  * Main loop, Checking input commands
+ * javac -d bin bt2/Battleship.java
+ * cd bin
+ * java bt2.Battleship
  */
 
 public class Battleship {

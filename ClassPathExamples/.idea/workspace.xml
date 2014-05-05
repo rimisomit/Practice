@@ -2,28 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3277a80a-53da-48df-9207-9cb63968872b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ClassPathExamples.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Battleship.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Battleship.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/BattleshipException.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/BattleshipException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Board.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Board.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/BoardCell.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/BoardCell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Crater.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Crater.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Ship$ShipType.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Ship$ShipType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Ship.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Ship.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Water.class" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/Water.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/Battleship.iml" afterPath="$PROJECT_DIR$/../Battleship/Battleship.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/.idea/misc.xml" afterPath="$PROJECT_DIR$/../Battleship/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/ships.conf" afterPath="$PROJECT_DIR$/../Battleship/out/production/Battleship/bt2/ships.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/src/bt2/ships.conf" afterPath="$PROJECT_DIR$/../Battleship/src/bt2/ships.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/a/A1.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/a/A2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/b/B1.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/b/B2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/few/Class1.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/few/Class2.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/c/Starter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tasks.todo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Battleship/src/bt2/Battleship.java" afterPath="$PROJECT_DIR$/../Battleship/src/bt2/Battleship.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ClassPathExamples.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,7 +78,7 @@
       <file leaf-file-name="Starter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/c/Starter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="21" selection-start="118" selection-end="118" vertical-scroll-proportion="0.31979695" vertical-offset="0" max-vertical-offset="486">
+            <state line="14" column="8" selection-start="277" selection-end="277" vertical-scroll-proportion="0.6395939" vertical-offset="0" max-vertical-offset="486">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -603,12 +591,17 @@
       <changelist id="3277a80a-53da-48df-9207-9cb63968872b" name="Default" comment="" />
       <created>1399321075244</created>
       <updated>1399321075244</updated>
-      <workItem from="1399321083846" duration="3421000" />
+      <workItem from="1399321083846" duration="3814000" />
     </task>
+    <task id="LOCAL-00001" summary="initial for classpath">
+      <created>1399324555267</created>
+      <updated>1399324555267</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3421000" />
+    <option name="totallyTimeSpent" value="3814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1370" height="745" extended-state="6" />
@@ -654,6 +647,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="initial for classpath" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial for classpath" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -721,7 +716,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/c/Starter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="21" selection-start="118" selection-end="118" vertical-scroll-proportion="0.31979695" vertical-offset="0" max-vertical-offset="486">
+        <state line="14" column="8" selection-start="277" selection-end="277" vertical-scroll-proportion="0.6395939" vertical-offset="0" max-vertical-offset="486">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
