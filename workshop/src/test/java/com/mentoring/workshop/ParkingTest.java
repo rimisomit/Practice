@@ -25,24 +25,41 @@ public class ParkingTest {
 
     @Test
     public void placeCarToParkingAfterRepairTest() {
-        Assert.assertTrue(parking.placeCarToParking(car, true));
+        parking.receiveCar(car, true);
+        Assert.assertEquals(car.getCarStatus(), CarStatus.REPAIR_COMPLETE);
     }
 
     @Test
     public void placeCarToParkingBeforeRepairTest() {
-        Assert.assertTrue(parking.placeCarToParking(car, false));
+        parking.receiveCar(car, false);
+        Assert.assertNotEquals(car.getCarStatus(), CarStatus.REPAIRING);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
+    public void placeCarToParkingBeforeRepairNullTest() {
+        parking.receiveCar(null, false);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void placeCarToParkingAfterRepairAgainTest() {
-        Assert.assertTrue(parking.placeCarToParking(car, true));
+        parking.receiveCar(car, true);
+        parking.receiveCar(car, true);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void placeCarToParkingBeforeRepairAgainTest() {
-        Assert.assertTrue(parking.placeCarToParking(car, false));
+        parking.receiveCar(car, false);
+        parking.receiveCar(car, false);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void releaseCarTest() {
+        car.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
+        parking.releaseCar(car);
+    }
 
-
+    @Test(expected = NullPointerException.class)
+    public void releaseCarNullTest() {
+        parking.releaseCar(null);
+    }
 }

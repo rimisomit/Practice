@@ -11,11 +11,6 @@ public class Workshop {
     private ArrayList<Garage> garage;
     //private Garage garage;
     private Parking parking;
-    private final int GARAGE1_ID = 100;
-    private final int GARAGE2_ID = 200;
-    private final int GARAGE3_ID = 300;
-    private final int GARAGE4_ID = 400;
-    private final int GARAGE5_ID = 500;
 
     public Workshop(Car car, boolean toRepair) {
         garage = new ArrayList<Garage>();
@@ -26,11 +21,10 @@ public class Workshop {
         garage.add(new Garage());
         garage.add(new Garage());
         garage.add(new Garage());
-
         if (toRepair) {
             receiveNewCar(car);
         } else {
-            parking.placeCarToParking(car);
+            parking.receiveCar(car);
         }
 
     }
@@ -39,23 +33,32 @@ public class Workshop {
         return garage.size();
     }
 
+    /**
+     * @param car a car
+     * @return
+     * 1. Check car not null
+     * 2. For every garage check if empty and place car
+     */
     public void receiveNewCar(Car car) {
         removeRepairedCarsFromGarages();
+        if (car == null) {
+            throw new NullPointerException("Car is null");
+        }
         for (Garage g : garage) {
             if (g.getGarageEmptiness()) {
-                g.placeCarToGarage(car);
+                g.receiveCar(car);
+                break;
             } else {
-                parking.placeCarToParking(car, false);
+                parking.receiveCar(car, false);
             }
         }
     }
 
-    public boolean takeOutCar(Car car) {
-        if (parking.removeCarFromParking(car)){
-            return true;
-        } else {
-            return false;
+    public void takeOutCar(Car car) {
+        if(car == null) {
+            throw new NullPointerException();
         }
+        parking.releaseCar(car);
     }
 
     /**
@@ -72,7 +75,7 @@ public class Workshop {
                 car = g.getCar();
                 if (car != null) {
                     if ((timeNow - car.getCarRepairStartDate().getTime()) > 10) {
-                        parking.placeCarToParking(car, true);
+                        parking.receiveCar(car, true);
                         g.setGarageEmptiness(true);
                     }
                 }
@@ -80,7 +83,10 @@ public class Workshop {
         }
     }
 
-    public CarStatus returnCarStatus(Car car) {
+    public CarStatus getCarStatus(Car car) {
+        if (car == null) {
+            throw new NullPointerException("Cannot get status for null");
+        }
         return car.getCarStatus();
     }
 

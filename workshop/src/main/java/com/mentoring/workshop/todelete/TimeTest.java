@@ -1,12 +1,10 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.todelete;
 
 import java.util.Date;
 
 import static java.lang.Thread.sleep;
 
-/**
- * Created by user on 8/20/14.
- */
+
 public final class TimeTest {
 
     public static void main(String[] args) throws InterruptedException {

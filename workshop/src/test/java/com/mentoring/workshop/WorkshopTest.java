@@ -13,8 +13,8 @@ public class WorkshopTest {
 
     @Before
     public void setUp() {
-        workshop = new Workshop(car, true);
         car = new Car();
+        workshop = new Workshop(car, false);
         parking = new Parking();
     }
 
@@ -24,16 +24,34 @@ public class WorkshopTest {
         Assert.assertEquals(CarStatus.REPAIRING, car.getCarStatus());
     }
 
+    @Test(expected = NullPointerException.class)
+    public void receiveNewCarStatusNullTest(){
+        workshop.receiveNewCar(null); //TODO OK or not OK?
+    }
+
+    @Test
+    public void receiveNewCarStatusToClientTest(){
+        workshop.receiveNewCar(car);
+        Assert.assertEquals(CarStatus.REPAIRING, workshop.getCarStatus(car));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void receiveNewCarStatusToClientNullTest(){
+        workshop.getCarStatus(null); //TODO OK or not OK?
+    }
+
+
+
+    @Test(expected = NullPointerException.class)
+    public void takeOutCarNullTest(){
+        workshop.takeOutCar(null); //TODO OK or not OK?
+    }
+
     @Test
     public void returnGaragesCountTest(){
         Assert.assertEquals(workshop.garagesCount(), 5);
     }
 
-    @Test
-    public void returnCarRepairTimeTest() {
-
-
-    }
 
 
 }

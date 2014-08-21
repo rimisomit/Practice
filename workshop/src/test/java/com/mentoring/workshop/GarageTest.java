@@ -4,18 +4,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by user on 8/5/14.
- */
 public class GarageTest {
 
     private Garage[] garage;
     private Car[] car;
-    private int size;
+    private int size = 5;
 
     @Before
     public void setUp() {
-        size = new Workshop(car[0], true).garagesCount();
         car = new Car[size];
         garage = new Garage[size];
         for (int i = 0; i < size; i++) {
@@ -34,21 +30,19 @@ public class GarageTest {
 
     @Test
     public void returnNotEmptyGarageTest() {
-        for (int i = 0; i < size; i++) {
-            garage[i].placeCarToGarage(car[i]);
-            Assert.assertFalse(garage[i].getGarageEmptiness());
-        }
+            garage[0].receiveCar(car[0]);
+            Assert.assertFalse(garage[0].getGarageEmptiness());
     }
 
-    @Test //(expected = IllegalStateException.class)
+    @Test (expected = IllegalStateException.class)
     public void carAlreadyInGarageTest() {
-        garage[0].placeCarToGarage(car[0]);
-        Assert.assertFalse(garage[0].placeCarToGarage(car[0]));
+        garage[0].receiveCar(car[0]);
+        garage[0].receiveCar(car[1]);
     }
 
     @Test
     public void returnCar() {
-        garage[0].placeCarToGarage(car[0]);
+        garage[0].receiveCar(car[0]);
         Assert.assertNotNull(garage[0].getCar());
         Assert.assertNull(garage[1].getCar());
     }

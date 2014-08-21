@@ -37,19 +37,25 @@ public class CarTest {
 
     @Test
     public void showCarStatusInGarageTest() {
-        garage.placeCarToGarage(car);
+        garage.receiveCar(car);
         Assert.assertEquals(CarStatus.REPAIRING, car.getCarStatus());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void showCarStatusInGarageNullTest() {
+        garage.receiveCar(null);
+        Assert.assertTrue(garage.getGarageEmptiness());
     }
 
     @Test
     public void showCarStatusInParkingAfterRepairTest() {
-        parking.placeCarToParking(car, true);
+        parking.receiveCar(car, true);
         Assert.assertEquals(CarStatus.REPAIR_COMPLETE, car.getCarStatus());
     }
 
     @Test
     public void showCarStatusInParkingBeforeRepairTest() {
-        parking.placeCarToParking(car, false);
+        parking.receiveCar(car, false);
         Assert.assertEquals(CarStatus.WAITING_FOR_REPAIR, car.getCarStatus());
     }
 
@@ -65,7 +71,7 @@ public class CarTest {
 
     @Test
     public void returnCarRepairStartDateInGarageTest() throws InterruptedException {
-        garage.placeCarToGarage(car);
+        garage.receiveCar(car);
         sleep(4000); // TODO OK not OK?
         date = new Date();
         Assert.assertNotNull(car.getCarRepairStartDate());

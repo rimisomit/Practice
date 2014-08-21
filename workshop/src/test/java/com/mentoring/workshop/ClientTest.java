@@ -12,8 +12,9 @@ public class ClientTest {
     @Before
     public void setUp() {
         car = new Car();
-        client = new Client(car);
+        client = new Client();
         workshop = new Workshop(car, true);
     }
+
 
 }

@@ -40,4 +40,23 @@ public class Car {
         this.carRepairStartDate = carRepairStartDate;
     }
 
+    /**
+     * Created by user on 8/21/14.
+     */
+    public static class Obj {
+
+        public static void main(String[] args) {
+
+            Obj obj = new Obj();
+            obj.print("a", "b");
+            obj.print();
+
+        }
+
+        void print(String... str) {
+            for (String s : str) {
+                System.out.printf(s);
+            }
+        }
+    }
 }
