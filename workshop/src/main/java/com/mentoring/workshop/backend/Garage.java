@@ -1,13 +1,16 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.backend;
+
+import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.data.CarStatus;
 
 import java.util.Date;
 
 
-public class Garage extends Location implements CarReceiveService {
+public class Garage extends CarLocation {
     private boolean garageEmptiness = true;
     //private ArrayList<Garage> list;
     //private int carIdInGarage;
-    private Car car; //TODO How to inherit this
+
 //TODO how to implement Arraylist here
 /*
     public Garage() {
@@ -27,14 +30,11 @@ public class Garage extends Location implements CarReceiveService {
         return garageEmptiness;
     }
 
-    /**
-     * @param garageStatus true = empty, false = has a car
-     */
     public void setGarageEmptiness(boolean garageStatus) {
         this.garageEmptiness = garageStatus;
     }
 
-    public void receiveCar(Car car, boolean repairComplete){
+    public void receiveCar(Car car, boolean repairComplete) {
         if (repairComplete) {
             throw new IllegalStateException("Placing repaired car to garage");
         } else {
@@ -72,7 +72,7 @@ public class Garage extends Location implements CarReceiveService {
         }
     }
 
-    public Car getCar() { //TODO how to inherit this
-        return car;
+    public void releaseCar(Car car) {
+        //TODO Empty, OK?
     }
 }

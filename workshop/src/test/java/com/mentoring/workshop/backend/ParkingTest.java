@@ -1,5 +1,8 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.backend;
 
+import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.data.CarStatus;
+import com.mentoring.workshop.backend.Parking;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +22,11 @@ public class ParkingTest {
     }
 
     @Test
+    public void checkInstanceOfTest() {
+        Assert.assertTrue(parking instanceof CarLocation); //TODO WTF?
+    }
+
+    @Test
     public void returnParkingLoadTest(){
         Assert.assertTrue(parking.getParkingLoad()>=0);
     }
@@ -35,7 +43,7 @@ public class ParkingTest {
         Assert.assertNotEquals(car.getCarStatus(), CarStatus.REPAIRING);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void placeCarToParkingBeforeRepairNullTest() {
         parking.receiveCar(null, false);
     }

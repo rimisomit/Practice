@@ -1,49 +1,75 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.backend;
+
+import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.data.CarStatus;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by user on 7/29/14.
  */
-public class Workshop {
+public final class Repairment implements CarService {
 
     private ArrayList<Garage> garage;
-    //private Garage garage;
+    private Car car;
     private Parking parking;
 
-    public Workshop(Car car, boolean toRepair) {
+    /*
+        public Repairment(Car car, boolean toRepair) {
+            if (car == null) {
+                throw new IllegalArgumentException("Received null car from reception");
+            }
+            this.car = car;
+            garage = new ArrayList<Garage>();
+            parking = new Parking();
+            garage.add(new Garage());
+            garage.add(new Garage());
+            garage.add(new Garage());
+            garage.add(new Garage());
+            garage.add(new Garage());
+            if (toRepair) {
+                receiveCar(car);
+            } else {
+                parking.receiveCar(car);
+            }
+        }
+    */
+    public Repairment() {
         garage = new ArrayList<Garage>();
-        //garage = new Garage();
         parking = new Parking();
         garage.add(new Garage());
         garage.add(new Garage());
         garage.add(new Garage());
         garage.add(new Garage());
         garage.add(new Garage());
-        if (toRepair) {
-            receiveNewCar(car);
-        } else {
-            parking.receiveCar(car);
-        }
-
     }
 
     final public int garagesCount() {
         return garage.size();
     }
 
+    public void receiveCar(Car car, boolean toRepair) {
+        this.car = car;
+        if (toRepair) {
+            receiveCar(car);
+        } else {
+            parking.receiveCar(car);
+        }
+    }
+
     /**
+     * 1. check car not null
+     * 2. remove repaired cars from garages
+     * 3. if first found garage is empty - place car
+     *    if all garages are occupied - place to parking
      * @param car a car
-     * @return
-     * 1. Check car not null
-     * 2. For every garage check if empty and place car
      */
-    public void receiveNewCar(Car car) {
-        removeRepairedCarsFromGarages();
+    public void receiveCar(Car car) {
         if (car == null) {
             throw new NullPointerException("Car is null");
         }
+        removeRepaired();
+        this.car = car;
         for (Garage g : garage) {
             if (g.getGarageEmptiness()) {
                 g.receiveCar(car);
@@ -54,8 +80,8 @@ public class Workshop {
         }
     }
 
-    public void takeOutCar(Car car) {
-        if(car == null) {
+    public void releaseCar(Car car) {
+        if (car == null) {
             throw new NullPointerException();
         }
         parking.releaseCar(car);
@@ -67,9 +93,9 @@ public class Workshop {
      * 3. Place car to parting
      * 4. change garage status to empty
      */
-    public void removeRepairedCarsFromGarages() {
+    public void removeRepaired() {
         Car car;
-        long timeNow = new Date().getTime();    //TODO OK not OK?
+        long timeNow = System.currentTimeMillis();
         for (Garage g : garage) {
             if (!g.getGarageEmptiness()) {
                 car = g.getCar();
@@ -88,6 +114,14 @@ public class Workshop {
             throw new NullPointerException("Cannot get status for null");
         }
         return car.getCarStatus();
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public Parking getParking() {
+        return parking;
     }
 
 }

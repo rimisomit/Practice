@@ -1,14 +1,13 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.backend;
+
+import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.data.CarStatus;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 7/29/14.
- */
-public class Parking extends Location implements CarReceiveService {
+public class Parking extends CarLocation {
 
     private ArrayList<Car> list;
-    private Car car;
 
     public Parking() {
         list = new ArrayList<Car>();
@@ -18,23 +17,38 @@ public class Parking extends Location implements CarReceiveService {
         return list.size();
     }
 
-    public ArrayList<Car> getCarList() {
+    /*public ArrayList<Car> getCarList() {
         return list;
-    }
+    }*/
 
     /**
-     * @param car
+     * 1. check car not null
+     * 2. check if car already in parking
+     * 3. place car to parking
+     * @param car client's car
      * @param repairComplete was car repaired or just came
-     * @return placed or not
      */
     public void receiveCar(Car car, boolean repairComplete) {
-        if (car == null) { //TODO any point to throw this? JVM did the same
-            throw new NullPointerException("Cannot receive car as null");
+        if (car == null) {
+            throw new IllegalArgumentException("Cannot receive car as null");
         }
         this.car = car;
-        if (list.contains(car)) {
+        /*if (list.contains(car)) {
             throw new IllegalArgumentException("Car is already in parking");
+        }*/
+        /*
+        for (Car c : list) {
+            if(c.equals(car)) {
+                throw new IllegalArgumentException("Car is already in parking");
+            }
         }
+        */
+        for (Car c : list) { //TODO WHY 2nd and 3rd cars are the same
+            if (c.getCarId() == car.getCarId()) {
+                throw new IllegalArgumentException("The car is already in parking");
+            }
+        }
+
         if (list.add(car)) {
             if (repairComplete) {
                 car.setCarStatus(CarStatus.REPAIR_COMPLETE);
@@ -47,7 +61,7 @@ public class Parking extends Location implements CarReceiveService {
 
     public void receiveCar(Car car) {
         if (car == null) {
-            throw new NullPointerException("Cannot receive car as null");
+            throw new IllegalArgumentException("Cannot receive car as null");
         }
         car.setCarStatus(CarStatus.PARKED);
     }
@@ -61,10 +75,6 @@ public class Parking extends Location implements CarReceiveService {
         } else {
             throw new IllegalStateException("Cannot take out broken car to client");
         }
-    }
-
-    public Car getCar() {
-        return car;
     }
 
 }

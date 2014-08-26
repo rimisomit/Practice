@@ -1,5 +1,7 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.backend;
 
+import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.backend.Garage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +22,12 @@ public class GarageTest {
         }
 
     }
+
+    @Test
+    public void checkInstanceOfTest() {
+        Assert.assertTrue(garage[0] instanceof CarLocation);
+    }
+
 
     @Test
     public void returnEmptyGarageTest() {

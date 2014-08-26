@@ -1,4 +1,4 @@
-package com.mentoring.workshop;
+package com.mentoring.workshop.data;
 
 import java.util.Date;
 
@@ -8,7 +8,6 @@ import java.util.Date;
 public class Car {
 
     private CarStatus carStatus = CarStatus.WAITING_FOR_REPAIR;
-    //private String carLocation="na";
     private Date carRepairStartDate;
     private int carId;
 
@@ -17,7 +16,7 @@ public class Car {
     }
 
     public Car() {
-        this((int) (Math.random()*1000));
+        this((int) (Math.random() * 1000));
     }
 
     public int getCarId() {
@@ -40,23 +39,22 @@ public class Car {
         this.carRepairStartDate = carRepairStartDate;
     }
 
-    /**
-     * Created by user on 8/21/14.
-     */
-    public static class Obj {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
 
-        public static void main(String[] args) {
+        Car car = (Car) o;
 
-            Obj obj = new Obj();
-            obj.print("a", "b");
-            obj.print();
+        if (carId != car.carId) return false;
+        return carStatus == car.carStatus;
 
-        }
+    }
 
-        void print(String... str) {
-            for (String s : str) {
-                System.out.printf(s);
-            }
-        }
+    @Override
+    public int hashCode() {
+        int result = carStatus.hashCode();
+        result = 31 * result + carId;
+        return result;
     }
 }
