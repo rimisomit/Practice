@@ -1,7 +1,7 @@
-package com.mentoring.workshop.backend;
+package com.mentoring.workshop.garageshop;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.backend.Garage;
+import com.mentoring.workshop.car.Car;
+import com.mentoring.workshop.car.CarLocation;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,11 +38,11 @@ public class GarageTest {
 
     @Test
     public void returnNotEmptyGarageTest() {
-            garage[0].receiveCar(car[0]);
-            Assert.assertFalse(garage[0].getGarageEmptiness());
+        garage[0].receiveCar(car[0]);
+        Assert.assertFalse(garage[0].getGarageEmptiness());
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void carAlreadyInGarageTest() {
         garage[0].receiveCar(car[0]);
         garage[0].receiveCar(car[1]);

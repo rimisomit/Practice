@@ -1,4 +1,4 @@
-package com.mentoring.workshop.frontend;
+package com.mentoring.workshop.client;
 
 /**
  * Created by user on 8/25/14.

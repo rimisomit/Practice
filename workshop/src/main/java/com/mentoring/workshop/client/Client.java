@@ -1,7 +1,7 @@
-package com.mentoring.workshop.frontend;
+package com.mentoring.workshop.client;
 
 
-import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.car.Car;
 
 /**
  * Class can interact with Workshop

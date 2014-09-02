@@ -1,8 +1,8 @@
-package com.mentoring.workshop.backend;
+package com.mentoring.workshop.garageshop;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.data.CarStatus;
-import com.mentoring.workshop.backend.Parking;
+import com.mentoring.workshop.car.Car;
+import com.mentoring.workshop.car.CarLocation;
+import com.mentoring.workshop.car.CarStatus;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +27,8 @@ public class ParkingTest {
     }
 
     @Test
-    public void returnParkingLoadTest(){
-        Assert.assertTrue(parking.getParkingLoad()>=0);
+    public void returnParkingLoadTest() {
+        Assert.assertTrue(parking.getParkingLoad() >= 0);
     }
 
     @Test
@@ -69,5 +69,15 @@ public class ParkingTest {
     @Test(expected = NullPointerException.class)
     public void releaseCarNullTest() {
         parking.releaseCar(null);
+    }
+
+    @Test
+    public void releaseWaitingCarsTest() {
+        Car car1 = new Car();
+        parking.receiveCar(car);
+        car.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
+        parking.receiveCar(car1);
+        car1.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
+        Assert.assertEquals(parking.releaseWaitingCars().size(), 2);
     }
 }

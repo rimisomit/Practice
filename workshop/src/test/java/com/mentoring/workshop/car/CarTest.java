@@ -1,9 +1,7 @@
-package com.mentoring.workshop.data;
+package com.mentoring.workshop.car;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.data.CarStatus;
-import com.mentoring.workshop.backend.Garage;
-import com.mentoring.workshop.backend.Parking;
+import com.mentoring.workshop.garageshop.Garage;
+import com.mentoring.workshop.garageshop.Parking;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,10 +74,9 @@ public class CarTest {
     @Test
     public void returnCarRepairStartDateInGarageTest() throws InterruptedException {
         garage.receiveCar(car);
-        sleep(4000);
+        sleep(1100);
         date = new Date();
         Assert.assertNotNull(car.getCarRepairStartDate());
         Assert.assertTrue(car.getCarRepairStartDate().getTime() < date.getTime());
     }
-
 }

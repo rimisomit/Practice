@@ -1,4 +1,4 @@
-package com.mentoring.workshop.data;
+package com.mentoring.workshop.car;
 
 public enum CarStatus {
     WAITING_FOR_REPAIR,

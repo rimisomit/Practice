@@ -1,7 +1,7 @@
-package com.mentoring.workshop.frontend;
+package com.mentoring.workshop.client;
 
-import com.mentoring.workshop.backend.Repairment;
-import com.mentoring.workshop.data.Car;
+import com.mentoring.workshop.garageshop.Repairment;
+import com.mentoring.workshop.car.Car;
 
 /**
  * Created by user on 8/22/14.
@@ -45,6 +45,7 @@ public final class Reception implements ClientService {
         }
         this.client = client;
         this.car = client.getCar();
+        //System.out.println("RECEPTION CAR = "+car.getCarId());
         repairment.receiveCar(car);
     }
 
@@ -55,8 +56,10 @@ public final class Reception implements ClientService {
         this.client = client;
         this.car = client.getCar();
         if (toRepair) {
+            System.out.println("RECEPTION to garage = " + car.toString());
             repairment.receiveCar(car);
         } else {
+            System.out.println("RECEPTION to parking = " + car.toString());
             repairment.receiveCar(car, false);
         }
     }

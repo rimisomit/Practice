@@ -1,4 +1,4 @@
-package com.mentoring.workshop.data;
+package com.mentoring.workshop.car;
 
 import java.util.Date;
 
@@ -56,5 +56,10 @@ public class Car {
         int result = carStatus.hashCode();
         result = 31 * result + carId;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "[CAR ID: "+carId+"]";
     }
 }

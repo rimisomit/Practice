@@ -1,8 +1,5 @@
-package com.mentoring.workshop.frontend;
+package com.mentoring.workshop.client;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.backend.Repairment;
-import com.mentoring.workshop.frontend.Client;
 import org.junit.Before;
 import org.junit.Assert;
 import org.junit.Test;

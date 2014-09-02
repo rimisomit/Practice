@@ -1,7 +1,8 @@
-package com.mentoring.workshop.backend;
+package com.mentoring.workshop.garageshop;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.data.CarStatus;
+import com.mentoring.workshop.car.Car;
+import com.mentoring.workshop.car.CarLocation;
+import com.mentoring.workshop.car.CarStatus;
 
 import java.util.Date;
 
@@ -9,19 +10,23 @@ import java.util.Date;
 public class Garage extends CarLocation {
     private boolean garageEmptiness = true;
     //private ArrayList<Garage> list;
-    //private int carIdInGarage;
+    private int garageId;
 
 //TODO how to implement Arraylist here
-/*
+
     public Garage() {
-        list = new ArrayList<Garage>();
-        list.add(new Garage());
-        list.add(new Garage());
-        list.add(new Garage());
-        list.add(new Garage());
-        list.add(new Garage());
+        this((int) (Math.random() * 1000));
     }
-*/
+
+    @Override
+    public String toString() {
+        return "[Garage" + garageId + "-" + garageEmptiness + ']';
+    }
+
+    public Garage(int garageId) {
+        this.garageId = garageId;
+    }
+
     /*public void setRepairTime(int repairTime) {
         this.repairTime = repairTime;
     }*/
@@ -56,18 +61,22 @@ public class Garage extends CarLocation {
         if (car == null) {
             throw new NullPointerException("Car is null");
         }
-        Date carRepairStartDate = new Date();
-        this.car = car;
         if (car.getCarStatus() == CarStatus.REPAIRING) {
             throw new IllegalArgumentException("Car is already repairing");
-        } else {
+        }
+        if (!garageEmptiness) {
+            throw new IllegalStateException("Garage is occupied");
+        }
+
+        //System.out.println("GARAGE CAR = " + car.getCarId());
+        Date carRepairStartDate = new Date();
+        this.car = car;
+        if (car.getCarStatus() != CarStatus.REPAIRING) {
             if (garageEmptiness) {
                 garageEmptiness = false;
                 car.setCarStatus(CarStatus.REPAIRING);
                 car.setCarRepairStartDate(carRepairStartDate);
-                //carIdInGarage = car.getCarId();
-            } else {
-                throw new IllegalStateException("Garage is occupied");
+                //garageId = car.getCarId();
             }
         }
     }

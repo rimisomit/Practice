@@ -1,7 +1,8 @@
-package com.mentoring.workshop.backend;
+package com.mentoring.workshop.garageshop;
 
-import com.mentoring.workshop.data.Car;
-import com.mentoring.workshop.data.CarStatus;
+import com.mentoring.workshop.car.Car;
+import com.mentoring.workshop.car.CarService;
+import com.mentoring.workshop.car.CarStatus;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
  */
 public final class Repairment implements CarService {
 
+    private final static int INTERVAL = 1000;
     private ArrayList<Garage> garage;
     private Car car;
     private Parking parking;
@@ -61,23 +63,33 @@ public final class Repairment implements CarService {
      * 1. check car not null
      * 2. remove repaired cars from garages
      * 3. if first found garage is empty - place car
-     *    if all garages are occupied - place to parking
+     * if all garages are occupied - place to parking
+     *
      * @param car a car
      */
     public void receiveCar(Car car) {
+        removeRepaired();
         if (car == null) {
             throw new NullPointerException("Car is null");
         }
-        removeRepaired();
         this.car = car;
+        System.out.println("REPAIRMENT CAR = " + car.getCarId());
+
+        //TODO Difference BREAK and RETURN and
+        if (findEmptyGarage() != null ) {
+            findEmptyGarage().receiveCar(car);
+        } else {
+            parking.receiveCar(car, false);
+        }
+    }
+
+    public Garage findEmptyGarage() {
         for (Garage g : garage) {
             if (g.getGarageEmptiness()) {
-                g.receiveCar(car);
-                break;
-            } else {
-                parking.receiveCar(car, false);
+                return g;
             }
         }
+        return null;
     }
 
     public void releaseCar(Car car) {
@@ -100,7 +112,8 @@ public final class Repairment implements CarService {
             if (!g.getGarageEmptiness()) {
                 car = g.getCar();
                 if (car != null) {
-                    if ((timeNow - car.getCarRepairStartDate().getTime()) > 10) {
+                    //System.out.println(timeNow - car.getCarRepairStartDate().getTime());
+                    if ((timeNow - car.getCarRepairStartDate().getTime()) > INTERVAL) {
                         parking.receiveCar(car, true);
                         g.setGarageEmptiness(true);
                     }
