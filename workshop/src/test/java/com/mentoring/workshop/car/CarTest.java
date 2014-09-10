@@ -5,7 +5,9 @@ import com.mentoring.workshop.garageshop.Parking;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Date;
+
 import static java.lang.Thread.sleep;
 
 /**
@@ -14,13 +16,12 @@ import static java.lang.Thread.sleep;
 public class CarTest {
 
     //public static final String REPAIRING = "Repairing";
-    public Car car;
-    public Garage garage;
-    public Parking parking;
-    public Date date;
+    private Car car;
+    private Garage garage;
+    private Parking parking;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         car = new Car();
         garage = new Garage();
         parking = new Parking();
@@ -62,7 +63,7 @@ public class CarTest {
     }
 
     @Test
-    public void showCarId(){
+    public void showCarId() {
         Assert.assertNotNull(car.getCarId());
     }
 
@@ -75,7 +76,7 @@ public class CarTest {
     public void returnCarRepairStartDateInGarageTest() throws InterruptedException {
         garage.receiveCar(car);
         sleep(1100);
-        date = new Date();
+        Date date = new Date();
         Assert.assertNotNull(car.getCarRepairStartDate());
         Assert.assertTrue(car.getCarRepairStartDate().getTime() < date.getTime());
     }

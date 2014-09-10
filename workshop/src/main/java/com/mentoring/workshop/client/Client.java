@@ -7,7 +7,7 @@ import com.mentoring.workshop.car.Car;
  * Class can interact with Workshop
  */
 public class Client {
-    private Car car;
+    private final Car car;
 
     public Client() {
         car = new Car();

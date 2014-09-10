@@ -8,9 +8,9 @@ import java.util.Date;
 
 
 public class Garage extends CarLocation {
-    private boolean garageEmptiness = true;
     //private ArrayList<Garage> list;
-    private int garageId;
+    private final int garageId;
+    private boolean garageEmptiness = true;
 
 //TODO how to implement Arraylist here
 
@@ -18,7 +18,7 @@ public class Garage extends CarLocation {
         this((int) (Math.random() * 1000));
     }
 
-    public Garage(int garageId) {
+    private Garage(int garageId) { //TODO Why can be private?
         this.garageId = garageId;
     }
 
@@ -35,8 +35,8 @@ public class Garage extends CarLocation {
         return garageEmptiness;
     }
 
-    public void setGarageEmptiness(boolean garageStatus) {
-        this.garageEmptiness = garageStatus;
+    public void setGarageEmptiness() {
+        this.garageEmptiness = true;
     }
 
     public void receiveCar(Car car, boolean repairComplete) {
@@ -49,13 +49,12 @@ public class Garage extends CarLocation {
 
     /**
      * @param car A car
-     * @return Status, placed or not
-     * 1. check if car not repaired
-     * 2. check if garage empty
-     * 3. Write
-     * Garage not empty
-     * Car status repairing
-     * Car repair start time
+     *            1. check if car not repaired
+     *            2. check if garage empty
+     *            3. Write
+     *            Garage not empty
+     *            Car status repairing
+     *            Car repair start time
      */
     public void receiveCar(Car car) {
         if (car == null) {

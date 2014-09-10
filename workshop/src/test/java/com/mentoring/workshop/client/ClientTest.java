@@ -1,7 +1,7 @@
 package com.mentoring.workshop.client;
 
-import org.junit.Before;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ClientTest {
@@ -10,7 +10,7 @@ public class ClientTest {
     //private Repairment repairment;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         //car = new Car();
         client = new Client();
     }

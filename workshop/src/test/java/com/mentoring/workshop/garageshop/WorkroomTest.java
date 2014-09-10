@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by user on 7/29/14.
- */
 public class WorkroomTest {
 
     private Workroom workroom;

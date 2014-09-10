@@ -10,10 +10,10 @@ public class GarageTest {
 
     private Garage[] garage;
     private Car[] car;
-    private int size = 5;
 
     @Before
     public void setUp() {
+        int size = 5;
         car = new Car[size];
         garage = new Garage[size];
         for (int i = 0; i < size; i++) {

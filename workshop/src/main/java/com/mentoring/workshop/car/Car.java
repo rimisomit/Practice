@@ -7,11 +7,11 @@ import java.util.Date;
  */
 public class Car {
 
+    private final int carId;
     private CarStatus carStatus = CarStatus.WAITING_FOR_REPAIR;
     private Date carRepairStartDate;
-    private int carId;
 
-    public Car(int carId) {
+    private Car(int carId) { //TODO Why Private?
         this.carId = carId;
     }
 
@@ -46,8 +46,7 @@ public class Car {
 
         Car car = (Car) o;
 
-        if (carId != car.carId) return false;
-        return carStatus == car.carStatus;
+        return carId == car.carId && carStatus == car.carStatus;
 
     }
 

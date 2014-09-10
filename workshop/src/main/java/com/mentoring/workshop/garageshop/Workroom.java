@@ -6,15 +6,12 @@ import com.mentoring.workshop.car.CarStatus;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 7/29/14.
- */
 public final class Workroom implements CarService {
 
     private final static int INTERVAL = 1000;
-    private ArrayList<Garage> garage;
+    private final ArrayList<Garage> garage;
+    private final Parking parking;
     private Car car;
-    private Parking parking;
 
     /*
         public Repairment(Car car, boolean toRepair) {
@@ -84,7 +81,7 @@ public final class Workroom implements CarService {
         }
     }
 
-    public Garage findEmptyGarage() {
+    Garage findEmptyGarage() {
         for (Garage g : garage) {
             if (g.getGarageEmptiness()) {
                 return g;
@@ -106,7 +103,7 @@ public final class Workroom implements CarService {
      * 3. Place car to parting
      * 4. change garage status to empty
      */
-    public void removeRepaired() {
+    void removeRepaired() {
         Car car;
         long timeNow = System.currentTimeMillis();
         for (Garage g : garage) {
@@ -115,7 +112,7 @@ public final class Workroom implements CarService {
                 if (car != null) {
                     if ((timeNow - car.getCarRepairStartDate().getTime()) > INTERVAL) {
                         parking.receiveCar(car, true);
-                        g.setGarageEmptiness(true);
+                        g.setGarageEmptiness();
                         System.out.println("Repaired " + car.toString());
                     }
                 }
@@ -138,7 +135,7 @@ public final class Workroom implements CarService {
         return parking;
     }
 
-    public void releaseWaiting() {
+    void releaseWaiting() {
         car = parking.releaseWaiting();
         if (car != null) {
             parking.releaseCar(car);

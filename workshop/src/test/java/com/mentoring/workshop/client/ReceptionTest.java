@@ -7,10 +7,8 @@ import org.junit.Test;
 
 import static java.lang.Thread.sleep;
 
-/**
- * Created by user on 8/25/14.
- */
 public class ReceptionTest {
+    private final static int INTERVAL = 1100;
     private Client client0;
     private Client client1;
     private Client client2;
@@ -20,10 +18,9 @@ public class ReceptionTest {
     private Client client6;
     private Reception reception0;
     private Reception reception1;
-    private final static int INTERVAL = 1100;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception { //TODO why I shud throw this?
         client0 = new Client();
         client1 = new Client();
         client2 = new Client();
@@ -42,14 +39,14 @@ public class ReceptionTest {
 
     @Test
     public void getClientTest() {
-        reception0.receiveOrder(client0);
+        reception0.receiveOrder(client0, true);
         Assert.assertNotNull(reception0.getClient());
         Assert.assertEquals(reception0.getClient().getCar(), reception0.getWorkroom().getCar());
     }
 
     @Test
     public void clientGetCarTest() {
-        reception0.receiveOrder(client0);
+        reception0.receiveOrder(client0, true);
         reception1.receiveOrder(client1, false);
         Assert.assertNotEquals(reception0.getClient().getCar().getCarStatus(), CarStatus.PARKED);
         Assert.assertEquals(reception1.getClient().getCar().getCarStatus(), CarStatus.PARKED);
@@ -57,7 +54,7 @@ public class ReceptionTest {
 
     @Test
     public void repairmentGetCarTest() {
-        reception0.receiveOrder(client0);
+        reception0.receiveOrder(client0, true);
         reception1.receiveOrder(client1, false);
         Assert.assertNotEquals(reception0.getWorkroom().getCar().getCarStatus(), CarStatus.PARKED);
         Assert.assertEquals(reception1.getWorkroom().getCar().getCarStatus(), CarStatus.PARKED);
@@ -65,7 +62,7 @@ public class ReceptionTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void receiveOderNullTest() {
-        reception0.receiveOrder(null);
+        reception0.receiveOrder(null, true);
         reception0.receiveOrder(null, false);
     }
 
@@ -90,15 +87,15 @@ public class ReceptionTest {
 
     @Test
     public void placeSixCarsToGaragesTest() {
-        reception0.receiveOrder(client0);
+        reception0.receiveOrder(client0, true);
         System.out.println("-----------------");
-        reception0.receiveOrder(client1);
+        reception0.receiveOrder(client1, true);
         System.out.println("-----------------");
-        reception0.receiveOrder(client2);
+        reception0.receiveOrder(client2, true);
         System.out.println("-----------------");
-        reception0.receiveOrder(client3);
-        reception0.receiveOrder(client4);
-        reception0.receiveOrder(client5);
+        reception0.receiveOrder(client3, true);
+        reception0.receiveOrder(client4, true);
+        reception0.receiveOrder(client5, true);
         Assert.assertEquals(client0.getCar().getCarStatus(), CarStatus.REPAIRING);
         Assert.assertEquals(client1.getCar().getCarStatus(), CarStatus.REPAIRING);
         Assert.assertEquals(client2.getCar().getCarStatus(), CarStatus.REPAIRING);
@@ -106,6 +103,7 @@ public class ReceptionTest {
         Assert.assertEquals(client4.getCar().getCarStatus(), CarStatus.REPAIRING);
         Assert.assertEquals(client5.getCar().getCarStatus(), CarStatus.WAITING_FOR_REPAIR);
     }
+
     @Test
     public void repairCarsFromParkingTest() throws InterruptedException {
         System.out.println(client0.getCar().toString());
@@ -116,15 +114,15 @@ public class ReceptionTest {
         System.out.println(client5.getCar().toString());
         System.out.println(client6.getCar().toString());
 
-        reception0.receiveOrder(client0);
-        reception0.receiveOrder(client1);
-        reception0.receiveOrder(client2);
-        reception0.receiveOrder(client3);
-        reception0.receiveOrder(client4);
+        reception0.receiveOrder(client0, true);
+        reception0.receiveOrder(client1, true);
+        reception0.receiveOrder(client2, true);
+        reception0.receiveOrder(client3, true);
+        reception0.receiveOrder(client4, true);
         //out of capacity
-        reception0.receiveOrder(client5); //will go to parking
+        reception0.receiveOrder(client5, true); //will go to parking
         sleep(INTERVAL);
-        reception0.receiveOrder(client6);
+        reception0.receiveOrder(client6, true);
         //Client1..4 REPAIR_COMPLETE
         Assert.assertEquals(client4.getCar().getCarStatus(), CarStatus.REPAIR_COMPLETE);
         Assert.assertEquals(client5.getCar().getCarStatus(), CarStatus.REPAIRING);
@@ -132,11 +130,12 @@ public class ReceptionTest {
         sleep(INTERVAL);
         //Assert.assertEquals(client5.getCar().getCarStatus(), CarStatus.REPAIR_COMPLETE);
     }
+
     @Test
     public void repairOneCarTest() throws InterruptedException {
-        reception0.receiveOrder(client0);
+        reception0.receiveOrder(client0, true);
         sleep(INTERVAL);
-        reception0.receiveOrder(client1);
+        reception0.receiveOrder(client1, true);
         Assert.assertEquals(client0.getCar().getCarStatus(), CarStatus.REPAIR_COMPLETE);
     }
 }

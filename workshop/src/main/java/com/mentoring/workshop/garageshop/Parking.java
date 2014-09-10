@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Parking extends CarLocation {
 
-    private ArrayList<Car> parkingList;
+    private final ArrayList<Car> parkingList;
     //private ArrayList<Car> parkingWaitingList;
 
     public Parking() {
