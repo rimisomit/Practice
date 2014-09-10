@@ -60,6 +60,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "[CAR ID: "+carId+"]";
+        return "[CAR ID: " + carId + ", " + carStatus + "]";
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by user on 7/29/14.
  */
-public final class Repairment implements CarService {
+public final class Workroom implements CarService {
 
     private final static int INTERVAL = 1000;
     private ArrayList<Garage> garage;
@@ -36,7 +36,7 @@ public final class Repairment implements CarService {
             }
         }
     */
-    public Repairment() {
+    public Workroom() {
         garage = new ArrayList<Garage>();
         parking = new Parking();
         garage.add(new Garage());
@@ -69,14 +69,15 @@ public final class Repairment implements CarService {
      */
     public void receiveCar(Car car) {
         removeRepaired();
+        releaseWaiting();
         if (car == null) {
             throw new NullPointerException("Car is null");
         }
         this.car = car;
-        System.out.println("REPAIRMENT CAR = " + car.getCarId());
+        System.out.println("REPAIRMENT CAR = " + car.toString());
 
         //TODO Difference BREAK and RETURN and
-        if (findEmptyGarage() != null ) {
+        if (findEmptyGarage() != null) {
             findEmptyGarage().receiveCar(car);
         } else {
             parking.receiveCar(car, false);
@@ -112,10 +113,10 @@ public final class Repairment implements CarService {
             if (!g.getGarageEmptiness()) {
                 car = g.getCar();
                 if (car != null) {
-                    //System.out.println(timeNow - car.getCarRepairStartDate().getTime());
                     if ((timeNow - car.getCarRepairStartDate().getTime()) > INTERVAL) {
                         parking.receiveCar(car, true);
                         g.setGarageEmptiness(true);
+                        System.out.println("Repaired " + car.toString());
                     }
                 }
             }
@@ -137,4 +138,22 @@ public final class Repairment implements CarService {
         return parking;
     }
 
+    public void releaseWaiting() {
+        car = parking.releaseWaiting();
+        if (car != null) {
+            parking.releaseCar(car);
+            receiveCar(car);
+        }
+    }
+/*
+    public void releaseWaiting(ArrayList<Car> cars) {
+        if (cars != null) {
+            if (cars.size() > 0) {
+                for (Car c : cars) {
+                    receiveCar(c);
+                }
+            }
+        }
+    }
+    */
 }

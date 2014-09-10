@@ -60,10 +60,11 @@ public class ParkingTest {
         parking.receiveCar(car, false);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void releaseCarTest() {
         car.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
         parking.releaseCar(car);
+        Assert.assertEquals(parking.getParkingLoad(), 0);
     }
 
     @Test(expected = NullPointerException.class)
@@ -78,6 +79,6 @@ public class ParkingTest {
         car.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
         parking.receiveCar(car1);
         car1.setCarStatus(CarStatus.WAITING_FOR_REPAIR);
-        Assert.assertEquals(parking.releaseWaitingCars().size(), 2);
+        Assert.assertEquals(parking.releaseWaiting(), car);
     }
 }

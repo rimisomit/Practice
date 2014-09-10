@@ -18,13 +18,13 @@ public class Garage extends CarLocation {
         this((int) (Math.random() * 1000));
     }
 
+    public Garage(int garageId) {
+        this.garageId = garageId;
+    }
+
     @Override
     public String toString() {
         return "[Garage" + garageId + "-" + garageEmptiness + ']';
-    }
-
-    public Garage(int garageId) {
-        this.garageId = garageId;
     }
 
     /*public void setRepairTime(int repairTime) {
@@ -67,8 +67,6 @@ public class Garage extends CarLocation {
         if (!garageEmptiness) {
             throw new IllegalStateException("Garage is occupied");
         }
-
-        //System.out.println("GARAGE CAR = " + car.getCarId());
         Date carRepairStartDate = new Date();
         this.car = car;
         if (car.getCarStatus() != CarStatus.REPAIRING) {
@@ -76,7 +74,6 @@ public class Garage extends CarLocation {
                 garageEmptiness = false;
                 car.setCarStatus(CarStatus.REPAIRING);
                 car.setCarRepairStartDate(carRepairStartDate);
-                //garageId = car.getCarId();
             }
         }
     }
@@ -84,4 +81,6 @@ public class Garage extends CarLocation {
     public void releaseCar(Car car) {
         //TODO Empty, OK?
     }
+
+
 }

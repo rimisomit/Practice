@@ -37,14 +37,14 @@ public class ReceptionTest {
 
     @Test
     public void getRepairmentTest() {
-        Assert.assertNotNull(reception0.getRepairment());
+        Assert.assertNotNull(reception0.getWorkroom());
     }
 
     @Test
     public void getClientTest() {
         reception0.receiveOrder(client0);
         Assert.assertNotNull(reception0.getClient());
-        Assert.assertEquals(reception0.getClient().getCar(), reception0.getRepairment().getCar());
+        Assert.assertEquals(reception0.getClient().getCar(), reception0.getWorkroom().getCar());
     }
 
     @Test
@@ -59,8 +59,8 @@ public class ReceptionTest {
     public void repairmentGetCarTest() {
         reception0.receiveOrder(client0);
         reception1.receiveOrder(client1, false);
-        Assert.assertNotEquals(reception0.getRepairment().getCar().getCarStatus(), CarStatus.PARKED);
-        Assert.assertEquals(reception1.getRepairment().getCar().getCarStatus(), CarStatus.PARKED);
+        Assert.assertNotEquals(reception0.getWorkroom().getCar().getCarStatus(), CarStatus.PARKED);
+        Assert.assertEquals(reception1.getWorkroom().getCar().getCarStatus(), CarStatus.PARKED);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -85,7 +85,7 @@ public class ReceptionTest {
         reception0.receiveOrder(client3, false);
         reception0.receiveOrder(client4, false);
         reception0.receiveOrder(client5, false);
-        Assert.assertEquals(reception0.getRepairment().getParking().getParkingLoad(), 6);
+        Assert.assertEquals(reception0.getWorkroom().getParking().getParkingLoad(), 6);
     }
 
     @Test
@@ -108,18 +108,27 @@ public class ReceptionTest {
     }
     @Test
     public void repairCarsFromParkingTest() throws InterruptedException {
+        System.out.println(client0.getCar().toString());
+        System.out.println(client1.getCar().toString());
+        System.out.println(client2.getCar().toString());
+        System.out.println(client3.getCar().toString());
+        System.out.println(client4.getCar().toString());
+        System.out.println(client5.getCar().toString());
+        System.out.println(client6.getCar().toString());
+
         reception0.receiveOrder(client0);
         reception0.receiveOrder(client1);
         reception0.receiveOrder(client2);
         reception0.receiveOrder(client3);
         reception0.receiveOrder(client4);
-        reception0.receiveOrder(client5);
+        //out of capacity
+        reception0.receiveOrder(client5); //will go to parking
         sleep(INTERVAL);
         reception0.receiveOrder(client6);
         //Client1..4 REPAIR_COMPLETE
         Assert.assertEquals(client4.getCar().getCarStatus(), CarStatus.REPAIR_COMPLETE);
-        //TODO clean up waiting cars
         Assert.assertEquals(client5.getCar().getCarStatus(), CarStatus.REPAIRING);
+        Assert.assertEquals(client6.getCar().getCarStatus(), CarStatus.REPAIRING);
         sleep(INTERVAL);
         //Assert.assertEquals(client5.getCar().getCarStatus(), CarStatus.REPAIR_COMPLETE);
     }

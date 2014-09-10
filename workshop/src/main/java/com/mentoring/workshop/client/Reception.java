@@ -1,6 +1,6 @@
 package com.mentoring.workshop.client;
 
-import com.mentoring.workshop.garageshop.Repairment;
+import com.mentoring.workshop.garageshop.Workroom;
 import com.mentoring.workshop.car.Car;
 
 /**
@@ -9,44 +9,20 @@ import com.mentoring.workshop.car.Car;
 public final class Reception implements ClientService {
     private Client client;
     private Reception reception;
-    private Repairment repairment;
+    private Workroom workroom;
     private Car car;
 
     public Reception() {
-        repairment = new Repairment();
+        workroom = new Workroom();
     }
 
-    /*
-        public Reception(Client client) {
-            if (client.getCar() == null) {
-                throw new IllegalArgumentException("Received null car from client");
-            }
-            this.client = client;
-            this.car = client.getCar();
-            repairment = new Repairment(car, true);
-        }
-
-        public Reception(Client client, boolean repair) {
-            if (client.getCar() == null) {
-                throw new IllegalArgumentException("Received null car from client");
-            }
-            this.client = client;
-            this.car = client.getCar();
-            if (repair) {
-                repairment = new Repairment(car, true);
-            } else {
-                repairment = new Repairment(car, false);
-            }
-        }
-    */
     public void receiveOrder(Client client) {
         if (client == null) {
             throw new IllegalArgumentException("Received null client");
         }
         this.client = client;
         this.car = client.getCar();
-        //System.out.println("RECEPTION CAR = "+car.getCarId());
-        repairment.receiveCar(car);
+        workroom.receiveCar(car);
     }
 
     public void receiveOrder(Client client, boolean toRepair) {
@@ -57,10 +33,10 @@ public final class Reception implements ClientService {
         this.car = client.getCar();
         if (toRepair) {
             System.out.println("RECEPTION to garage = " + car.toString());
-            repairment.receiveCar(car);
+            workroom.receiveCar(car);
         } else {
             System.out.println("RECEPTION to parking = " + car.toString());
-            repairment.receiveCar(car, false);
+            workroom.receiveCar(car, false);
         }
     }
 
@@ -69,11 +45,11 @@ public final class Reception implements ClientService {
     }
 
     public void releaseOrder(Client client) {
-        getRepairment().releaseCar(client.getCar());
+        getWorkroom().releaseCar(client.getCar());
     }
 
-    public Repairment getRepairment() {
-        return repairment;
+    public Workroom getWorkroom() {
+        return workroom;
     }
 
 }
